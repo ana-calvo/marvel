@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8337DFAE283F7D5C00A1064A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8337DFAD283F7D5C00A1064A /* ApiManager.swift */; };
 		83DB5EAF283E7DBA001F2072 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB5EAE283E7DBA001F2072 /* AppDelegate.swift */; };
 		83DB5EB1283E7DBA001F2072 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DB5EB0283E7DBA001F2072 /* SceneDelegate.swift */; };
 		83DB5EB8283E7DBD001F2072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83DB5EB7283E7DBD001F2072 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8337DFAD283F7D5C00A1064A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		83DB5EAB283E7DBA001F2072 /* marvel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = marvel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83DB5EAE283E7DBA001F2072 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83DB5EB0283E7DBA001F2072 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		83DB5EE4283E8C77001F2072 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				8337DFAD283F7D5C00A1064A /* ApiManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DB5EEB283E8F07001F2072 /* CharactersListViewController.swift in Sources */,
+				8337DFAE283F7D5C00A1064A /* ApiManager.swift in Sources */,
 				83DB5EF6283E96BD001F2072 /* BasePresenter.swift in Sources */,
 				83DB5EE3283E8C0E001F2072 /* ServiceLocator.swift in Sources */,
 				83DB5EEE283E8F4D001F2072 /* CharactersListPresenter.swift in Sources */,
