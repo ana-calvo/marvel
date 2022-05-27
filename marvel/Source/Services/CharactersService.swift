@@ -12,9 +12,11 @@ class CharactersService {
     // Shared instance (singleton) to be used.
     static let shared = CharactersService()
     
+    private let charactersEndpoint = "v1/public/characters"
+    
     func getCharacters(completion: @escaping (_ responseData: [Character]?, _ error: Error?) -> Void) {
         
-        ApiManager.shared.performRequest(from: "v1/public/characters") { responseData, error in
+        ApiManager.shared.performRequest(from: charactersEndpoint) { responseData, error in
             if let data = responseData {
                 let decoder = JSONDecoder()
                 do {
