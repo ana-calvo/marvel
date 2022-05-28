@@ -22,7 +22,7 @@ struct CharacterViewData {
         self.picture = picture
     }
     
-    static func create(from character: Character) -> CharacterViewData? {
+    static func create(from character: Character) -> CharacterViewData {
         
         let pictureUrl = "\(character.thumbnail.path)/standard_small.\(character.thumbnail.extension)"
         
