@@ -24,7 +24,16 @@ struct CharacterViewData {
     
     static func create(from character: Character) -> CharacterViewData {
         
-        let pictureUrl = "\(character.thumbnail.path)/standard_small.\(character.thumbnail.extension)"
+        var path = character.thumbnail.path
+        
+        // It conforms AppTransportSecurity (ATS) policy
+        if !path.contains("https") {
+            var comps = URLComponents(string: path)!
+            comps.scheme = "https"
+            path = comps.string!
+        }
+        
+        let pictureUrl = "\(path)/standard_medium.\(character.thumbnail.extension)"
         
         return CharacterViewData(
             id: character.id,
