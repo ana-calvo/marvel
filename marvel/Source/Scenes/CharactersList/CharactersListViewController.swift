@@ -93,10 +93,8 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.cellIdentifier, for: indexPath) as? CharacterCell else { return UITableViewCell() }
         
-        // Showing the image takes a bit more time than the text. This allows to show all the content when everything is ready
-        cell.avatarImageView.loadFrom(URLAddress: charactersList[indexPath.row].picture) { image in
-            cell.titleLabel.text = charactersList[indexPath.row].name
-        }
+        cell.avatarImageView.setImage(urlString: charactersList[indexPath.row].picture)
+        cell.titleLabel.text = charactersList[indexPath.row].name
         
         return cell
     }

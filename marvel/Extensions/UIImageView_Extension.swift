@@ -10,18 +10,25 @@ import UIKit
 
 extension UIImageView {
     
-    func loadFrom(URLAddress: String, completion: @escaping (_ image: UIImage?) -> Void) {
+    func loadFrom(URLAddress: String) {
         guard let url = URL(string: URLAddress) else {
             return
         }
         
-        DispatchQueue.main.async { [weak self] in
-            if let imageData = try? Data(contentsOf: url) {
-                if let loadedImage = UIImage(data: imageData) {
-                    self?.image = loadedImage
-                    completion(loadedImage)
-                }
+        if let imageData = try? Data(contentsOf: url) {
+            if let loadedImage = UIImage(data: imageData) {
+                self.image = loadedImage
             }
         }
     }
+    
+    // If there is no image available, a default one is set up
+    func setImage(urlString: String) {
+        if urlString.contains("image_not_available") {
+            self.image = UIImage(named: "marvel_logo")
+        } else {
+            self.loadFrom(URLAddress: urlString)
+        }
+    }
+
 }
