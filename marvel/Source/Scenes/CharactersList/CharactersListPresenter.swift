@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CharactersListPresenterView {
     func performCharacters(characters: [CharacterViewData])
@@ -15,6 +16,7 @@ protocol CharactersListPresenterView {
 class CharactersListPresenter: BasePresenter {
     
     // Properties
+    var characters: [Character] = []
     let errorMessage = "Something went wrong 😕. Please, try again later"
     
     var view: CharactersListPresenterView?
@@ -32,6 +34,18 @@ class CharactersListPresenter: BasePresenter {
     
 }
 
+// MARK: - Actions
+extension CharactersListPresenter {
+    
+    func showCharacterDetails(id: Int) {
+        if let index = self.characters.firstIndex(where: { $0.id == id }) {
+            let character = self.characters[index]
+            self.navigateToDetail(character: character)
+        }
+    }
+    
+}
+
 // MARK: - Methods
 extension CharactersListPresenter {
     
@@ -44,6 +58,8 @@ extension CharactersListPresenter {
             switch result {
                 
             case .successCase(let characters):
+                
+                self.characters = characters
                 
                 var charactersViewData: [CharacterViewData] = []
                 
@@ -61,4 +77,14 @@ extension CharactersListPresenter {
         
     }
     
+}
+
+// MARK: - Navigations
+extension CharactersListPresenter {
+    
+    private func navigateToDetail(character: Character) {
+        guard let sender = self.view as? CharactersListViewController else { return }
+        let adapter = CharacterDetailNavigationAdapter(character: character)
+        CharacterDetailNavigation(sender: sender).navigateWith(adapter: adapter)
+    }
 }

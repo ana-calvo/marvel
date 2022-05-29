@@ -23,19 +23,19 @@ class ServiceLocator {
         ])
     }
     
-    // MARK: Registration
+    // Registration
     func register<Service>(_ factory: @escaping () -> Service) {
         let serviceId = ObjectIdentifier(Service.self)
         registry[serviceId] = factory
     }
     
-    // MARK: Register singleton functions
+    // Register singleton functions
     func registerSingleton<Service>(_ singletonInstance: Service) {
         let serviceId = ObjectIdentifier(Service.self)
         registry[serviceId] = singletonInstance
     }
     
-    // MARK: Register modules funtions
+    // Register modules funtions
     func registerModules(_ modules: [ServiceLocatorModule]) {
         modules.forEach { $0.registerServices(serviceLocator: self) }
     }
@@ -44,7 +44,7 @@ class ServiceLocator {
         sharedLocator.registerModules(modules)
     }
     
-    // MARK: Injection
+    // Injection
     static func inject<Service>() -> Service {
         return sharedLocator.inject()
     }

@@ -49,11 +49,14 @@ class CharactersListViewController: BaseViewController {
 extension CharactersListViewController: CharactersListPresenterView {
     
     func performCharacters(characters: [CharacterViewData]) {
+        
         self.characters = characters
+        self.stopLoading()
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
     }
     
     func performError(message: String) {
@@ -68,7 +71,7 @@ extension CharactersListViewController: CharactersListPresenterView {
 
 // MARK: - TableView Methods
 extension CharactersListViewController: UITableViewDelegate, UITableViewDataSource {
- 
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -83,7 +86,7 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
         }
     }
     
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let charactersList = self.characters else { return UITableViewCell() }
@@ -92,21 +95,24 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
         
         // Showing the image takes a bit more time than the text. This allows to show all the content when everything is ready
         cell.avatarImageView.loadFrom(URLAddress: charactersList[indexPath.row].picture) { image in
-            self.stopLoading()
+            cell.titleLabel.text = charactersList[indexPath.row].name
         }
         
-        cell.titleLabel.text = charactersList[indexPath.row].name
-
         return cell
     }
-
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CharacterCell.height
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: Navigate to character detail
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let charactersList = self.characters {
+            self.presenter.showCharacterDetails(id: charactersList[indexPath.row].id)
+        }
+        
     }
     
 }
@@ -122,10 +128,14 @@ extension CharactersListViewController {
     }
     
     private func stopLoading() {
-        self.backgroundView.backgroundColor = .systemGray6
-        self.tableView.isHidden = false
-        self.activityIndicator.isHidden = true
-        self.activityIndicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.backgroundView.backgroundColor = .systemGray6
+            self.tableView.isHidden = false
+            self.activityIndicator.isHidden = true
+            self.activityIndicator.stopAnimating()
+        }
     }
     
 }
+
+

@@ -13,6 +13,9 @@ class MainServiceLocator: ServiceLocatorModule {
         
         // Characters list
         serviceLocator.register { self.provideCharactersListVC() }
+        
+        // Character detail
+        serviceLocator.register { self.provideCharacterDetailVC() }
     }
     
     
@@ -20,6 +23,13 @@ class MainServiceLocator: ServiceLocatorModule {
     private func provideCharactersListVC() -> CharactersListViewController {
         let viewController = CharactersListViewController(nibName: "CharactersListViewController", bundle: Bundle.main)
         viewController.listPresenter = CharactersListPresenter(view: viewController)
+        return viewController
+    }
+    
+    // Character detail
+    private func provideCharacterDetailVC() -> CharacterDetailViewController {
+        let viewController = CharacterDetailViewController(nibName: "CharacterDetailViewController", bundle: Bundle.main)
+        viewController.detailPresenter = CharacterDetailPresenter(view: viewController)
         return viewController
     }
     

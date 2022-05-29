@@ -9,6 +9,8 @@ import Foundation
 
 class BasePresenter {
     
+    var adapter: NavigationAdapter?
+    
     func viewDidLoad() { }
     
     func viewWillAppear() { }
