@@ -79,7 +79,7 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let charactersList = self.characters {
+        if let charactersList = self.characters, charactersList.count > 0 {
             return charactersList.count
         } else {
             return 0

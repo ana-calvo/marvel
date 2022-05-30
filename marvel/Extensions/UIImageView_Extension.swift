@@ -11,9 +11,7 @@ import UIKit
 extension UIImageView {
     
     func loadFrom(URLAddress: String) {
-        guard let url = URL(string: URLAddress) else {
-            return
-        }
+        guard let url = URL(string: URLAddress) else { return }
         
         if let imageData = try? Data(contentsOf: url) {
             if let loadedImage = UIImage(data: imageData) {
@@ -24,7 +22,7 @@ extension UIImageView {
     
     // If there is no image available, a default one is set up
     func setImage(urlString: String) {
-        if urlString.contains("image_not_available") {
+        if urlString.contains("image_not_available") || urlString.isEmpty {
             self.image = UIImage(named: "marvel_logo")
         } else {
             self.loadFrom(URLAddress: urlString)

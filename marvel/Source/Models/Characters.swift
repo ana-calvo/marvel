@@ -8,5 +8,5 @@
 import Foundation
 
 struct Characters: Decodable {
-    let data: CharactersList
+    let data: CharactersList?
 }

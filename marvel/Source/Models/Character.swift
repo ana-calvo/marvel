@@ -9,10 +9,10 @@ import Foundation
 
 struct Character: Decodable, Equatable {
     
-    let id: Int
-    let name: String
-    let description: String
-    let thumbnail: Thumbnail
+    let id: Int?
+    let name: String?
+    let description: String?
+    let thumbnail: Thumbnail?
     
     static func == (lhs: Character, rhs: Character) -> Bool {
         return lhs.id == rhs.id

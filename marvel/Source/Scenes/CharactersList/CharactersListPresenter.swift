@@ -60,13 +60,7 @@ extension CharactersListPresenter {
             case .successCase(let characters):
                 
                 self.characters = characters
-                
-                var charactersViewData: [CharacterViewData] = []
-                
-                characters.forEach { (character) in
-                    let characterViewData = CharacterViewData.create(from: character)
-                    charactersViewData.append(characterViewData)
-                }
+                let charactersViewData = self.prepareCharacters(characters: characters)
                 
                 view.performCharacters(characters: charactersViewData)
                 
@@ -75,6 +69,52 @@ extension CharactersListPresenter {
             }
         }
         
+    }
+    
+    private func prepareCharacters(characters: [Character]) -> [CharacterViewData] {
+        
+        var charactersViewData: [CharacterViewData] = []
+        
+        characters.forEach { (character) in
+            
+            // If there are no id and no name values to identify the character, it is not considerated
+            if let id = character.id, let name = character.name {
+                
+                let characterViewData = CharacterViewData(
+                    id: id,
+                    name: name,
+                    description: character.description,
+                    picture: self.preparePicture(thumbnail: character.thumbnail)
+                )
+                
+                charactersViewData.append(characterViewData)
+            }
+        }
+        
+        return charactersViewData
+    }
+    
+    private func preparePicture(thumbnail: Thumbnail?) -> String {
+        
+        var picturePath = ""
+        var pictureUrl = ""
+        
+        if let thumbnail = thumbnail, let path = thumbnail.path, let ext = thumbnail.extension {
+            
+            // It conforms AppTransportSecurity (ATS) policy
+            if !path.contains("https") {
+                var comps = URLComponents(string: path)!
+                comps.scheme = "https"
+                picturePath = comps.string!
+                
+            } else {
+                picturePath = path
+            }
+            
+            pictureUrl = "\(picturePath)/standard_medium.\(ext)"
+        }
+        
+        return pictureUrl
     }
     
 }

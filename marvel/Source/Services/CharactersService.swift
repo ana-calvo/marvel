@@ -21,7 +21,10 @@ class CharactersService {
                 let decoder = JSONDecoder()
                 do {
                     let decodedData = try decoder.decode(Characters.self, from: data)
-                    completion(decodedData.data.results, nil)
+                    if let data = decodedData.data, let results = data.results {
+                        completion(results, nil)
+                    }
+                    
                 } catch {
                     completion(nil, error)
                 }
