@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharacterDetailViewController" customModule="marvel" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="IOj-at-lms" id="G8U-cy-rOh"/>
                 <outlet property="descriptionLabel" destination="UEF-WU-VBt" id="SIu-UG-Mg5"/>
                 <outlet property="nameLabel" destination="U2l-4W-nFA" id="bRO-ur-Gr4"/>
                 <outlet property="profileImageView" destination="PfR-ID-54l" id="AcP-0a-tJx"/>
@@ -82,6 +83,9 @@
                         <constraint firstItem="aPu-P2-41v" firstAttribute="leading" secondItem="YDA-28-D2d" secondAttribute="leading" constant="40" id="lBq-Kj-bIq"/>
                     </constraints>
                 </view>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="IOj-at-lms">
+                    <rect key="frame" x="197" y="581" width="20" height="20"/>
+                </activityIndicatorView>
                 <tableView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Q24-r0-Crf">
                     <rect key="frame" x="0.0" y="319.5" width="414" height="542.5"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -92,12 +96,14 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="la2-Kb-vib" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="CKn-Pv-vIO"/>
+                <constraint firstItem="IOj-at-lms" firstAttribute="centerX" secondItem="Q24-r0-Crf" secondAttribute="centerX" id="D1i-wW-bc8"/>
                 <constraint firstItem="YDA-28-D2d" firstAttribute="top" secondItem="la2-Kb-vib" secondAttribute="bottom" id="DnW-2R-kgk"/>
                 <constraint firstItem="YDA-28-D2d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Fmv-Q1-9D1"/>
                 <constraint firstItem="la2-Kb-vib" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="SRv-Gs-ixR"/>
                 <constraint firstItem="la2-Kb-vib" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="YRL-Fq-b0i"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Q24-r0-Crf" secondAttribute="bottom" id="dhN-Rb-BR4"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q24-r0-Crf" secondAttribute="trailing" id="hqU-8j-2Rf"/>
+                <constraint firstItem="IOj-at-lms" firstAttribute="centerY" secondItem="Q24-r0-Crf" secondAttribute="centerY" id="iwX-Q2-BoK"/>
                 <constraint firstItem="Q24-r0-Crf" firstAttribute="top" secondItem="YDA-28-D2d" secondAttribute="bottom" constant="4" id="qUH-RT-r7o"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YDA-28-D2d" secondAttribute="trailing" id="ycU-xk-h20"/>
                 <constraint firstItem="Q24-r0-Crf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="z4d-ZD-Z7M"/>

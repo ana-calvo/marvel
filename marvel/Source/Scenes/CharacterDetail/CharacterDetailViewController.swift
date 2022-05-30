@@ -39,6 +39,12 @@ class CharacterDetailViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView! {
+        didSet {
+            activityIndicator.color = UIColor.darkGray
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -53,6 +59,7 @@ class CharacterDetailViewController: BaseViewController {
     // Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.startLoading()
     }
     
     // Presenter
@@ -83,6 +90,7 @@ extension CharacterDetailViewController: CharacterDetailPresenterView {
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.stopLoading()
         }
     }
     
@@ -95,6 +103,7 @@ extension CharacterDetailViewController: CharacterDetailPresenterView {
                 action: "Try later",
                 style: .default
             )
+            self.stopLoading()
         }
     }
     
@@ -136,6 +145,23 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
         
         self.tableView.estimatedRowHeight = ComicCell.height
         return UITableView.automaticDimension
+    }
+    
+}
+
+// MARK: - Methods
+extension CharacterDetailViewController {
+    
+    private func startLoading() {
+        self.tableView.isHidden = true
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+
+    private func stopLoading() {
+        self.tableView.isHidden = false
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
     }
     
 }
