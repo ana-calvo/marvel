@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831790E22845065D00B46E80 /* Comics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E12845065D00B46E80 /* Comics.swift */; };
+		831790E4284506A500B46E80 /* ComicsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E3284506A500B46E80 /* ComicsList.swift */; };
+		831790E6284506BF00B46E80 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E5284506BF00B46E80 /* Comic.swift */; };
+		831790E82845079F00B46E80 /* ComicsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E72845079F00B46E80 /* ComicsUseCase.swift */; };
+		831790EA28450A9900B46E80 /* ComicViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E928450A9900B46E80 /* ComicViewData.swift */; };
 		8336621D2842112000303585 /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336621C2842112000303585 /* BaseUseCase.swift */; };
 		8336621F284211E800303585 /* UseCaseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336621E284211E800303585 /* UseCaseResult.swift */; };
 		833662212842125E00303585 /* CharactersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833662202842125E00303585 /* CharactersUseCase.swift */; };
@@ -64,6 +69,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		831790E12845065D00B46E80 /* Comics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comics.swift; sourceTree = "<group>"; };
+		831790E3284506A500B46E80 /* ComicsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsList.swift; sourceTree = "<group>"; };
+		831790E5284506BF00B46E80 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
+		831790E72845079F00B46E80 /* ComicsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsUseCase.swift; sourceTree = "<group>"; };
+		831790E928450A9900B46E80 /* ComicViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewData.swift; sourceTree = "<group>"; };
 		8336621C2842112000303585 /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
 		8336621E284211E800303585 /* UseCaseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseResult.swift; sourceTree = "<group>"; };
 		833662202842125E00303585 /* CharactersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersUseCase.swift; sourceTree = "<group>"; };
@@ -148,6 +158,9 @@
 				8337DFB5283FF04800A1064A /* CharactersList.swift */,
 				8337DFB7283FF06500A1064A /* Character.swift */,
 				83E4756C2840E80D00B76DE4 /* Thumbnail.swift */,
+				831790E12845065D00B46E80 /* Comics.swift */,
+				831790E3284506A500B46E80 /* ComicsList.swift */,
+				831790E5284506BF00B46E80 /* Comic.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -325,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				83E4756F2840E8DD00B76DE4 /* CharacterViewData.swift */,
+				831790E928450A9900B46E80 /* ComicViewData.swift */,
 			);
 			path = ViewData;
 			sourceTree = "<group>";
@@ -335,6 +349,7 @@
 				833662242842144300303585 /* Bases */,
 				833662222842143C00303585 /* CharactersDomain.swift */,
 				833662202842125E00303585 /* CharactersUseCase.swift */,
+				831790E72845079F00B46E80 /* ComicsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -476,7 +491,9 @@
 				8336621D2842112000303585 /* BaseUseCase.swift in Sources */,
 				833662212842125E00303585 /* CharactersUseCase.swift in Sources */,
 				8398540C2843E16D00FD5C25 /* NavigationAdapter.swift in Sources */,
+				831790E4284506A500B46E80 /* ComicsList.swift in Sources */,
 				833662232842143C00303585 /* CharactersDomain.swift in Sources */,
+				831790E22845065D00B46E80 /* Comics.swift in Sources */,
 				8337DFB8283FF06500A1064A /* Character.swift in Sources */,
 				83E475702840E8DD00B76DE4 /* CharacterViewData.swift in Sources */,
 				83DB5EEB283E8F07001F2072 /* CharactersListViewController.swift in Sources */,
@@ -486,7 +503,9 @@
 				83DB5EF6283E96BD001F2072 /* BasePresenter.swift in Sources */,
 				83DB5EE3283E8C0E001F2072 /* ServiceLocator.swift in Sources */,
 				83E4756D2840E80D00B76DE4 /* Thumbnail.swift in Sources */,
+				831790EA28450A9900B46E80 /* ComicViewData.swift in Sources */,
 				839853F128439C1300FD5C25 /* BaseNavigationObject.swift in Sources */,
+				831790E6284506BF00B46E80 /* Comic.swift in Sources */,
 				83DB5EEE283E8F4D001F2072 /* CharactersListPresenter.swift in Sources */,
 				839853F728439EAE00FD5C25 /* CharactersListNavigationAdapter.swift in Sources */,
 				83DB5EE7283E8E9E001F2072 /* MainServiceLocator.swift in Sources */,
@@ -495,6 +514,7 @@
 				83DB5EAF283E7DBA001F2072 /* AppDelegate.swift in Sources */,
 				839853F528439E8800FD5C25 /* CharactersListNavigation.swift in Sources */,
 				839853E728437AF100FD5C25 /* CharacterCell.swift in Sources */,
+				831790E82845079F00B46E80 /* ComicsUseCase.swift in Sources */,
 				839853EB2843863E00FD5C25 /* UIImageView_Extension.swift in Sources */,
 				839853FB28439FDB00FD5C25 /* CharacterDetailViewController.swift in Sources */,
 				83DB5EF4283E9687001F2072 /* BaseViewController.swift in Sources */,

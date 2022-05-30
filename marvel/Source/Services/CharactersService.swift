@@ -34,4 +34,28 @@ class CharactersService {
         }
     }
     
+    func getComics(characterId: Int, completion: @escaping (_ responseData: [Comic]?, _ error: Error?) -> Void) {
+        
+        let comicsEndpoint = "\(charactersEndpoint)/\(characterId)/comics"
+        
+        ApiManager.shared.performRequest(from: comicsEndpoint) { responseData, error in
+            if let data = responseData {
+                let decoder = JSONDecoder()
+                do {
+                    let decodedData = try decoder.decode(Comics.self, from: data)
+                    if let data = decodedData.data, let results = data.results {
+                        completion(results, nil)
+                    }
+                    
+                } catch {
+                    completion(nil, error)
+                }
+            } else {
+                completion(nil, error)
+            }
+        }
+        
+        
+    }
+    
 }

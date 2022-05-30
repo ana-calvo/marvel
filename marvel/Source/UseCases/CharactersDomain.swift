@@ -26,4 +26,18 @@ open class CharactersDomain {
         useCase.execute()
     }
     
+    // Fetches the comics list of each character
+    func getComics(characterId: Int, completion: @escaping (_ result: ComicsResultCase) -> Void) {
+        
+        let useCase = ComicsUseCase(characterId: characterId)
+        
+        useCase.completionHandle = { (resultCase) in
+            
+            if let result = resultCase as? ComicsResultCase {
+                completion(result)
+            }
+        }
+        useCase.execute()
+    }
+    
 }
