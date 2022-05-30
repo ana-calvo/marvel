@@ -18,7 +18,7 @@ class CharacterDetailPresenter: BasePresenter {
     
     // Properties
     var character: Character?
-    let errorMessage = "Something went wrong 😕. Please, try again later"
+    let errorMessage = "Something went wrong 😕"
 
     var view: CharacterDetailPresenterView?
     
@@ -50,7 +50,8 @@ extension CharacterDetailPresenter {
             let data = CharacterViewData(id: adapter.character.id!,
                                          name: adapter.character.name!,
                                          description: adapter.character.description,
-                                         picture: self.preparePicture(thumbnail: adapter.character.thumbnail))
+                                         picture: self.getThumbnailUrl(thumbnail: adapter.character.thumbnail, size: "standard_large")
+)
             
             view.performDetails(character: data)
         }
@@ -92,38 +93,17 @@ extension CharacterDetailPresenter {
                     id: id,
                     title: title,
                     description: comic.description,
-                    coverImage: self.preparePicture(thumbnail: comic.thumbnail)
+                    cover: self.getThumbnailUrl(thumbnail: comic.thumbnail, size: "standard_medium"),
+                    position: comic.issueNumber
                 )
                 
                 comicsViewData.append(comicViewData)
             }
+   
         }
         
-        return comicsViewData
-    }
-    
-    
-    private func preparePicture(thumbnail: Thumbnail?) -> String {
-        
-        var picturePath = ""
-        var pictureUrl = ""
-        
-        if let thumbnail = thumbnail, let path = thumbnail.path, let ext = thumbnail.extension {
-            
-            // It conforms AppTransportSecurity (ATS) policy
-            if !path.contains("https") {
-                var comps = URLComponents(string: path)!
-                comps.scheme = "https"
-                picturePath = comps.string!
-                
-            } else {
-                picturePath = path
-            }
-            
-            pictureUrl = "\(picturePath)/standard_large.\(ext)"
-        }
-        
-        return pictureUrl
+        let orderedList = comicsViewData.sorted(by: {$0.position ?? 0 < $1.position ?? 0})
+        return orderedList
     }
     
 }

@@ -13,6 +13,7 @@ struct Comic: Decodable, Equatable {
     let title: String?
     let description: String?
     let thumbnail: Thumbnail?
+    let issueNumber: Double?
     
     static func == (lhs: Comic, rhs: Comic) -> Bool {
         return lhs.id == rhs.id

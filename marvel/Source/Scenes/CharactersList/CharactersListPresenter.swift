@@ -17,7 +17,7 @@ class CharactersListPresenter: BasePresenter {
     
     // Properties
     var characters: [Character] = []
-    let errorMessage = "Something went wrong 😕. Please, try again later"
+    let errorMessage = "Something went wrong 😕"
     
     var view: CharactersListPresenterView?
     
@@ -61,7 +61,6 @@ extension CharactersListPresenter {
                 
                 self.characters = characters
                 let charactersViewData = self.prepareCharacters(characters: characters)
-                
                 view.performCharacters(characters: charactersViewData)
                 
             case .unknownError:
@@ -84,37 +83,15 @@ extension CharactersListPresenter {
                     id: id,
                     name: name,
                     description: character.description,
-                    picture: self.preparePicture(thumbnail: character.thumbnail)
+                    picture: self.getThumbnailUrl(thumbnail: character.thumbnail, size: "standard_medium")
                 )
                 
                 charactersViewData.append(characterViewData)
             }
         }
         
-        return charactersViewData
-    }
-    
-    private func preparePicture(thumbnail: Thumbnail?) -> String {
-        
-        var picturePath = ""
-        var pictureUrl = ""
-        
-        if let thumbnail = thumbnail, let path = thumbnail.path, let ext = thumbnail.extension {
-            
-            // It conforms AppTransportSecurity (ATS) policy
-            if !path.contains("https") {
-                var comps = URLComponents(string: path)!
-                comps.scheme = "https"
-                picturePath = comps.string!
-                
-            } else {
-                picturePath = path
-            }
-            
-            pictureUrl = "\(picturePath)/standard_medium.\(ext)"
-        }
-        
-        return pictureUrl
+        let orderedList = charactersViewData.sorted(by: {$0.name < $1.name})
+        return orderedList
     }
     
 }

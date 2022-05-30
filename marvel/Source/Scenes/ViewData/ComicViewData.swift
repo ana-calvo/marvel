@@ -12,12 +12,14 @@ struct ComicViewData {
     let id: Int
     let title: String
     let description: String?
-    let coverImage: String
+    let cover: String
+    let position: Double?
     
-    init(id: Int, title: String, description: String? = nil, coverImage: String) {
+    init(id: Int, title: String, description: String? = nil, cover: String, position: Double? = nil) {
         self.id = id
         self.title = title
         self.description = description
-        self.coverImage = coverImage
+        self.cover = cover
+        self.position = position
     }
 }

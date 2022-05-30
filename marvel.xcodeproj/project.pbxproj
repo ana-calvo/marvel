@@ -12,6 +12,8 @@
 		831790E6284506BF00B46E80 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E5284506BF00B46E80 /* Comic.swift */; };
 		831790E82845079F00B46E80 /* ComicsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E72845079F00B46E80 /* ComicsUseCase.swift */; };
 		831790EA28450A9900B46E80 /* ComicViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790E928450A9900B46E80 /* ComicViewData.swift */; };
+		831790EF2845126400B46E80 /* ComicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831790ED2845126400B46E80 /* ComicCell.swift */; };
+		831790F02845126400B46E80 /* ComicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831790EE2845126400B46E80 /* ComicCell.xib */; };
 		8336621D2842112000303585 /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336621C2842112000303585 /* BaseUseCase.swift */; };
 		8336621F284211E800303585 /* UseCaseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8336621E284211E800303585 /* UseCaseResult.swift */; };
 		833662212842125E00303585 /* CharactersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 833662202842125E00303585 /* CharactersUseCase.swift */; };
@@ -74,6 +76,8 @@
 		831790E5284506BF00B46E80 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
 		831790E72845079F00B46E80 /* ComicsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsUseCase.swift; sourceTree = "<group>"; };
 		831790E928450A9900B46E80 /* ComicViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicViewData.swift; sourceTree = "<group>"; };
+		831790ED2845126400B46E80 /* ComicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicCell.swift; sourceTree = "<group>"; };
+		831790EE2845126400B46E80 /* ComicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComicCell.xib; sourceTree = "<group>"; };
 		8336621C2842112000303585 /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
 		8336621E284211E800303585 /* UseCaseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseResult.swift; sourceTree = "<group>"; };
 		833662202842125E00303585 /* CharactersUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersUseCase.swift; sourceTree = "<group>"; };
@@ -142,6 +146,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		831790EB2845123900B46E80 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				839853E528437AF100FD5C25 /* CharacterCell.swift */,
+				839853E628437AF100FD5C25 /* CharacterCell.xib */,
+			);
+			path = Character;
+			sourceTree = "<group>";
+		};
+		831790EC2845124A00B46E80 /* Comic */ = {
+			isa = PBXGroup;
+			children = (
+				831790ED2845126400B46E80 /* ComicCell.swift */,
+				831790EE2845126400B46E80 /* ComicCell.xib */,
+			);
+			path = Comic;
+			sourceTree = "<group>";
+		};
 		833662242842144300303585 /* Bases */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,8 +198,8 @@
 		839853E428437A7D00FD5C25 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				839853E528437AF100FD5C25 /* CharacterCell.swift */,
-				839853E628437AF100FD5C25 /* CharacterCell.xib */,
+				831790EC2845124A00B46E80 /* Comic */,
+				831790EB2845123900B46E80 /* Character */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -459,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83DB5EBB283E7DBD001F2072 /* LaunchScreen.storyboard in Resources */,
+				831790F02845126400B46E80 /* ComicCell.xib in Resources */,
 				83DB5EEC283E8F07001F2072 /* CharactersListViewController.xib in Resources */,
 				83DB5EB8283E7DBD001F2072 /* Assets.xcassets in Resources */,
 				839853FC28439FDB00FD5C25 /* CharacterDetailViewController.xib in Resources */,
@@ -521,6 +544,7 @@
 				83DB5EB1283E7DBA001F2072 /* SceneDelegate.swift in Sources */,
 				8337DFB1283FDAC100A1064A /* Characters.swift in Sources */,
 				8336621F284211E800303585 /* UseCaseResult.swift in Sources */,
+				831790EF2845126400B46E80 /* ComicCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

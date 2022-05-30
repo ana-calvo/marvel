@@ -51,21 +51,26 @@ extension CharactersListViewController: CharactersListPresenterView {
     func performCharacters(characters: [CharacterViewData]) {
         
         self.characters = characters
-        self.stopLoading()
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.stopLoading()
         }
         
     }
     
     func performError(message: String) {
-        self.showAlert(
-            title: "Error",
-            message: message,
-            action: "Understood",
-            style: .default
-        )
+        
+        DispatchQueue.main.async {
+            self.showAlert(
+                title: "Error",
+                message: message,
+                action: "Try later",
+                style: .default
+            )
+            
+            self.stopLoading()
+        }
     }
 }
 

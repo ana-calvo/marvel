@@ -9,6 +9,9 @@ import UIKit
 
 class CharacterDetailViewController: BaseViewController {
     
+    // Properties
+    var comics: [ComicViewData]?
+    
     // Outlets
     @IBOutlet weak var profileImageView: UIImageView! {
         didSet {
@@ -30,6 +33,23 @@ class CharacterDetailViewController: BaseViewController {
         }
     }
     
+    @IBOutlet weak var sectionDetailLabel: UILabel! {
+        didSet {
+            sectionDetailLabel.text = "Comics"
+        }
+    }
+    
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+            tableView.register(ComicCell.nibInstance, forCellReuseIdentifier: ComicCell.cellIdentifier)
+            tableView.tableFooterView = UIView(frame: CGRect.zero)
+        }
+    }
+    
+    
+    
     // Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +60,7 @@ class CharacterDetailViewController: BaseViewController {
     override var presenter: CharacterDetailPresenter! {
         return detailPresenter
     }
-
+    
 }
 
 // MARK: - Presenter Methods
@@ -59,11 +79,63 @@ extension CharacterDetailViewController: CharacterDetailPresenterView {
     }
     
     func performComics(comics: [ComicViewData]) {
-        print("-------COMICS FETCHED: \(comics)-----")
+        self.comics = comics
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func performError(message: String) {
-        //
+        
+        DispatchQueue.main.async {
+            self.showAlert(
+                title: "Error",
+                message: message,
+                action: "Try later",
+                style: .default
+            )
+        }
+    }
+    
+}
+
+// MARK: - TableView Methods
+extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let comicsList = self.comics, comicsList.count > 0 {
+            return comicsList.count
+        } else {
+            return 0
+        }
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let comicsList = self.comics else { return UITableViewCell() }
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ComicCell.cellIdentifier, for: indexPath) as? ComicCell else { return UITableViewCell() }
+        
+        cell.coverImageView.setImage(urlString: comicsList[indexPath.row].cover)
+        cell.titleLabel.text = comicsList[indexPath.row].title.capitalized
+        cell.descriptionLabel.text = comicsList[indexPath.row].description
+        
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        self.tableView.estimatedRowHeight = ComicCell.height
+        return UITableView.automaticDimension
     }
     
 }
