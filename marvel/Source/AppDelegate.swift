@@ -12,6 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        // Set color for the navigation bar text and items (by default is the blue color)
+        UINavigationBar.appearance().tintColor = .black
+        
         // Register modules
         ServiceLocator.registerModules()
 
