@@ -26,9 +26,12 @@
                                     <constraint firstAttribute="width" constant="40" id="kfo-GS-seA"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xx-Hp-Lkn">
-                                <rect key="frame" x="56" y="19" width="37" height="18"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1xx-Hp-Lkn">
+                                <rect key="frame" x="56" y="18" width="192" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="vD0-nY-vrl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -48,6 +51,7 @@
                             <constraint firstItem="1xx-Hp-Lkn" firstAttribute="centerY" secondItem="DeU-S3-YF1" secondAttribute="centerY" id="aht-N6-0fm"/>
                             <constraint firstItem="DeU-S3-YF1" firstAttribute="leading" secondItem="xu7-lS-dd3" secondAttribute="leading" constant="8" id="dhr-RK-GbT"/>
                             <constraint firstItem="84y-S6-05m" firstAttribute="centerY" secondItem="xu7-lS-dd3" secondAttribute="centerY" id="eVY-JW-Bae"/>
+                            <constraint firstItem="84y-S6-05m" firstAttribute="leading" secondItem="1xx-Hp-Lkn" secondAttribute="trailing" constant="8" id="f5c-gk-ojI"/>
                         </constraints>
                     </view>
                 </subviews>

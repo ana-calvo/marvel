@@ -14,14 +14,14 @@ protocol CharacterDetailPresenterView {
     func performEvents(events: [ProductViewData])
     func performSeries(series: [ProductViewData])
     func performStories(stories: [ProductViewData])
-    func performError(message: String)
+    func performError(error: ErrorViewData)
 }
 
 class CharacterDetailPresenter: BasePresenter {
     
     // Properties
     var character: Character?
-    let errorMessage = "Something went wrong 😕"
+    let error: ErrorViewData = ErrorViewData(title: "Error", description: "Something went wrong 😕 \n Please, try later.", actionTitle: "OK")
     
     var view: CharacterDetailPresenterView?
     
@@ -96,7 +96,7 @@ extension CharacterDetailPresenter {
                 view.performComics(comics: comicsViewData)
                 
             case .unknownError:
-                view.performError(message: self.errorMessage)
+                view.performError(error: self.error)
             }
         }
     }
@@ -115,7 +115,7 @@ extension CharacterDetailPresenter {
                 view.performEvents(events: eventsViewData)
                 
             case .unknownError:
-                view.performError(message: self.errorMessage)
+                view.performError(error: self.error)
             }
         }
     }
@@ -134,7 +134,7 @@ extension CharacterDetailPresenter {
                 view.performSeries(series: seriesViewData)
                 
             case .unknownError:
-                view.performError(message: self.errorMessage)
+                view.performError(error: self.error)
             }
         }
     }
@@ -153,7 +153,7 @@ extension CharacterDetailPresenter {
                 view.performStories(stories: storiesViewData)
                 
             case .unknownError:
-                view.performError(message: self.errorMessage)
+                view.performError(error: self.error)
             }
         }
     }

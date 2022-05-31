@@ -13,8 +13,6 @@ class CharactersListViewController: BaseViewController {
     var characters: [CharacterViewData]?
     
     //Outlets
-    @IBOutlet weak var backgroundView: UIView!
-    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -125,19 +123,17 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
 extension CharactersListViewController {
     
     private func startLoading() {
-        self.backgroundView.backgroundColor = .white
-        self.tableView.isHidden = true
-        self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+        self.activityIndicator.isHidden = false
+        self.tableView.isHidden = true
     }
     
     private func stopLoading() {
-        DispatchQueue.main.async {
-            self.backgroundView.backgroundColor = .systemGray6
-            self.tableView.isHidden = false
-            self.activityIndicator.isHidden = true
-            self.activityIndicator.stopAnimating()
-        }
+        self.activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
+        self.activityIndicator.isHidden = true
+        self.tableView.isHidden = false
     }
     
 }

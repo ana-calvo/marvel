@@ -76,13 +76,20 @@ class CharacterDetailViewController: BaseViewController {
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
+            tableView.isHidden = true
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(ProductCell.nibInstance, forCellReuseIdentifier: ProductCell.cellIdentifier)
             tableView.tableFooterView = UIView(frame: CGRect.zero)
         }
     }
- 
+    
+    @IBOutlet weak var emptyStateView: EmptyStateView! {
+        didSet {
+            emptyStateView.isHidden = true
+        }
+    }
+    
     // Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,47 +121,31 @@ extension CharacterDetailViewController: CharacterDetailPresenterView {
     
     func performComics(comics: [ProductViewData]) {
         self.comics = comics
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.stopLoading()
-        }
+        self.checkContent(products: comics)
     }
     
     func performEvents(events: [ProductViewData]) {
         self.events = events
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.stopLoading()
-        }
+        self.checkContent(products: events)
     }
     
     func performSeries(series: [ProductViewData]) {
         self.series = series
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.stopLoading()
-        }
+        self.checkContent(products: series)
     }
     
     func performStories(stories: [ProductViewData]) {
         self.stories = stories
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.stopLoading()
-        }
+        self.checkContent(products: stories)
     }
     
-    func performError(message: String) {
+    func performError(error: ErrorViewData) {
         
         DispatchQueue.main.async {
             self.showAlert(
-                title: "Error",
-                message: message,
-                action: "Try later",
+                title: error.title,
+                message: error.description,
+                action: error.actionTitle,
                 style: .default
             )
             self.stopLoading()
@@ -211,12 +202,11 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
             return 0
         }
         
-        
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
- 
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductCell.cellIdentifier, for: indexPath) as? ProductCell else { return UITableViewCell() }
         cell.selectionStyle = .none
         
@@ -260,10 +250,6 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
     
 }
 
-
-
-
-
 // MARK: - Actions
 extension CharacterDetailViewController {
     
@@ -279,20 +265,33 @@ extension CharacterDetailViewController {
 extension CharacterDetailViewController {
     
     private func startLoading() {
-        self.view.isUserInteractionEnabled = false
-        self.tableView.isHidden = true
-        self.activityIndicator.isHidden = false
         self.activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+        self.activityIndicator.isHidden = false
+        self.tableView.isHidden = true
+        self.emptyStateView.isHidden = true
     }
     
     private func stopLoading() {
-        self.view.isUserInteractionEnabled = true
-        self.tableView.isHidden = false
-        self.activityIndicator.isHidden = true
         self.activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
+        self.activityIndicator.isHidden = true
+    }
+    
+    private func checkContent(products: [ProductViewData]) {
+        
+        DispatchQueue.main.async {
+            self.tableView.isHidden = products.isEmpty ? true : false
+            self.emptyStateView.isHidden = products.isEmpty ? false : true
+            
+            self.tableView.reloadData()
+            self.stopLoading()
+        }
+        
     }
     
     private func updateProductInformation(at index: Int) {
+        
         if index == 0 {
             self.presenter.loadComics()
         } else if index == 1 {
