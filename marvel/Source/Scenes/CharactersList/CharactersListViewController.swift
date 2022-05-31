@@ -20,6 +20,7 @@ class CharactersListViewController: BaseViewController {
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(CharacterCell.nibInstance, forCellReuseIdentifier: CharacterCell.cellIdentifier)
+            tableView.tableFooterView = UIView(frame: CGRect.zero)
         }
     }
     

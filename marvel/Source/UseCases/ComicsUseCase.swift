@@ -8,7 +8,7 @@
 import Foundation
 
 enum ComicsResultCase {
-    case successCase(comics: [Comic])
+    case successCase(comics: [Product])
     case unknownError
 }
 
@@ -37,21 +37,19 @@ extension ComicsUseCase {
         CharactersService.shared.getComics(characterId: self.characterId) { responseData, error in
             
             if error == nil, let comicsList = responseData {
-
-                var comics: [Comic] = []
-
+                
+                var comics: [Product] = []
+                
                 comicsList.forEach { (comic) in
                     comics.append(comic)
                 }
-
+                
                 self.completionCase(ComicsResultCase.successCase(comics: comics))
-
+                
             } else {
                 self.completionCase(ComicsResultCase.unknownError, error: error)
             }
-            
         }
-        
     }
     
 }

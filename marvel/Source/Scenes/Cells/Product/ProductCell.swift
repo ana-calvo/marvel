@@ -1,5 +1,5 @@
 //
-//  ComicCell.swift
+//  ProductCell.swift
 //  marvel
 //
 //  Created by Ana calvo on 30/5/22.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ComicCell: UITableViewCell {
+class ProductCell: UITableViewCell {
     
     // Statics
-    static let cellIdentifier   = "comicIdentifier"
+    static let cellIdentifier   = "productIdentifier"
     
-    static let className        = "ComicCell"
+    static let className        = "ProductCell"
     
-    static let nibInstance      = UINib(nibName: ComicCell.className, bundle: nil)
+    static let nibInstance      = UINib(nibName: ProductCell.className, bundle: nil)
     
     static let height: CGFloat  = 64.0
     
@@ -28,20 +28,12 @@ class ComicCell: UITableViewCell {
     @IBOutlet weak var coverImageView: UIImageView! {
         didSet {
             coverImageView.image = nil
-            coverImageView.layer.masksToBounds = true
-            coverImageView.layer.cornerRadius = coverImageView.bounds.width / 2
         }
     }
     
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.text = ""
-        }
-    }
-    
-    @IBOutlet weak var descriptionLabel: UILabel! {
-        didSet {
-            descriptionLabel.text = ""
         }
     }
     

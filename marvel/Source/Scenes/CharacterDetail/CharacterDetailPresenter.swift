@@ -10,7 +10,10 @@ import UIKit
 
 protocol CharacterDetailPresenterView {
     func performDetails(character: CharacterViewData)
-    func performComics(comics: [ComicViewData])
+    func performComics(comics: [ProductViewData])
+    func performEvents(events: [ProductViewData])
+    func performSeries(series: [ProductViewData])
+    func performStories(stories: [ProductViewData])
     func performError(message: String)
 }
 
@@ -19,7 +22,7 @@ class CharacterDetailPresenter: BasePresenter {
     // Properties
     var character: Character?
     let errorMessage = "Something went wrong 😕"
-
+    
     var view: CharacterDetailPresenterView?
     
     // Initializations
@@ -32,6 +35,27 @@ class CharacterDetailPresenter: BasePresenter {
         super.viewDidLoad()
         self.loadCharacterData()
         self.getComics()
+    }
+    
+}
+
+// MARK: - Actions
+extension CharacterDetailPresenter {
+    
+    func loadComics() {
+        self.getComics()
+    }
+    
+    func loadEvents() {
+        self.getEvents()
+    }
+    
+    func loadSeries() {
+        self.getSeries()
+    }
+    
+    func loadStories() {
+        self.getStories()
     }
     
 }
@@ -51,58 +75,110 @@ extension CharacterDetailPresenter {
                                          name: adapter.character.name!,
                                          description: adapter.character.description,
                                          picture: self.getThumbnailUrl(thumbnail: adapter.character.thumbnail, size: "standard_large")
-)
+            )
             
             view.performDetails(character: data)
         }
         
     }
     
-    //
     private func getComics() {
         
         guard let view = self.view else { return }
         guard let character = self.character else { return }
-       
+        
         CharactersDomain.UseCases.getComics(characterId: character.id!) { result in
             
             switch result {
                 
             case .successCase(let comics):
-                let comicsViewData = self.prepareComics(comics: comics)
+                let comicsViewData = self.prepareProduct(products: comics)
                 view.performComics(comics: comicsViewData)
                 
             case .unknownError:
                 view.performError(message: self.errorMessage)
             }
         }
-
     }
     
+    private func getEvents() {
+        
+        guard let view = self.view else { return }
+        guard let character = self.character else { return }
+        
+        CharactersDomain.UseCases.getEvents(characterId: character.id!) { result in
+            
+            switch result {
+                
+            case .successCase(let events):
+                let eventsViewData = self.prepareProduct(products: events)
+                view.performEvents(events: eventsViewData)
+                
+            case .unknownError:
+                view.performError(message: self.errorMessage)
+            }
+        }
+    }
     
-    private func prepareComics(comics: [Comic]) -> [ComicViewData] {
+    private func getSeries() {
         
-        var comicsViewData: [ComicViewData] = []
+        guard let view = self.view else { return }
+        guard let character = self.character else { return }
         
-        comics.forEach { (comic) in
+        CharactersDomain.UseCases.getSeries(characterId: character.id!) { result in
+            
+            switch result {
+                
+            case .successCase(let series):
+                let seriesViewData = self.prepareProduct(products: series)
+                view.performSeries(series: seriesViewData)
+                
+            case .unknownError:
+                view.performError(message: self.errorMessage)
+            }
+        }
+    }
+    
+    private func getStories() {
+        
+        guard let view = self.view else { return }
+        guard let character = self.character else { return }
+        
+        CharactersDomain.UseCases.getStories(characterId: character.id!) { result in
+            
+            switch result {
+                
+            case .successCase(let stories):
+                let storiesViewData = self.prepareProduct(products: stories)
+                view.performStories(stories: storiesViewData)
+                
+            case .unknownError:
+                view.performError(message: self.errorMessage)
+            }
+        }
+    }
+    
+    private func prepareProduct(products: [Product]) -> [ProductViewData] {
+        
+        var productsViewData: [ProductViewData] = []
+        
+        products.forEach { (product) in
             
             // If there are no id and no title values to identify the comic, it is not considerated
-            if let id = comic.id, let title = comic.title {
+            if let id = product.id, let title = product.title {
                 
-                let comicViewData = ComicViewData(
+                let productViewData = ProductViewData(
                     id: id,
                     title: title,
-                    description: comic.description,
-                    cover: self.getThumbnailUrl(thumbnail: comic.thumbnail, size: "standard_medium"),
-                    position: comic.issueNumber
+                    cover: self.getThumbnailUrl(thumbnail: product.thumbnail, size: "portrait_small")
                 )
                 
-                comicsViewData.append(comicViewData)
+                productsViewData.append(productViewData)
             }
-   
+            
         }
         
-        let orderedList = comicsViewData.sorted(by: {$0.position ?? 0 < $1.position ?? 0})
+        let orderedList = productsViewData.sorted(by: {$0.title < $1.title})
         return orderedList
     }
     

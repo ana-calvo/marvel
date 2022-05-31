@@ -39,5 +39,15 @@ class CharacterCell: UITableViewCell {
         }
     }
     
+    // Highlight effect for selected cell
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        self.selectionStyle = .none
+        
+        UIView.animate(withDuration: 0.2) {
+            self.viewContainer.backgroundColor = (highlighted) ? .systemGray6 : .white
+        }
+    }
+    
 }
 
