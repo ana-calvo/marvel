@@ -15,10 +15,17 @@ class CharactersListViewController: BaseViewController {
     //Outlets
     @IBOutlet weak var tableView: UITableView! {
         didSet {
+            tableView.isHidden = true
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(CharacterCell.nibInstance, forCellReuseIdentifier: CharacterCell.cellIdentifier)
             tableView.tableFooterView = UIView(frame: CGRect.zero)
+        }
+    }
+    
+    @IBOutlet weak var emptyStateView: EmptyStateView! {
+        didSet {
+            emptyStateView.isHidden = true
         }
     }
     
@@ -27,7 +34,6 @@ class CharactersListViewController: BaseViewController {
             activityIndicator.color = UIColor.darkGray
         }
     }
-    
     
     // Presenter
     var listPresenter: CharactersListPresenter!
@@ -52,19 +58,22 @@ extension CharactersListViewController: CharactersListPresenterView {
         self.characters = characters
         
         DispatchQueue.main.async {
+            self.tableView.isHidden = characters.isEmpty ? true : false
+            self.emptyStateView.isHidden = characters.isEmpty ? false : true
+            
             self.tableView.reloadData()
             self.stopLoading()
         }
         
     }
     
-    func performError(message: String) {
+    func performError(error: ErrorViewData) {
         
         DispatchQueue.main.async {
             self.showAlert(
-                title: "Error",
-                message: message,
-                action: "Try later",
+                title: error.title,
+                message: error.description,
+                action: error.actionTitle,
                 style: .default
             )
             
@@ -127,13 +136,13 @@ extension CharactersListViewController {
         self.view.isUserInteractionEnabled = false
         self.activityIndicator.isHidden = false
         self.tableView.isHidden = true
+        self.emptyStateView.isHidden = true
     }
     
     private func stopLoading() {
         self.activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.activityIndicator.isHidden = true
-        self.tableView.isHidden = false
     }
     
 }

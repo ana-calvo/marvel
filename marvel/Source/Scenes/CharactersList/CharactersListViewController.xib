@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CharactersListViewController" customModule="marvel" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="4R3-X0-ts8" id="wCX-JK-mfJ"/>
+                <outlet property="emptyStateView" destination="jdC-mu-0f9" id="O0r-ro-4R7"/>
                 <outlet property="tableView" destination="qD0-qa-Oz1" id="Xw2-4B-XRT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,6 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdC-mu-0f9" userLabel="Empty state View" customClass="EmptyStateView" customModule="marvel" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qD0-qa-Oz1">
                     <rect key="frame" x="0.0" y="4" width="414" height="770"/>
                     <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -34,11 +39,15 @@
             <color key="backgroundColor" systemColor="systemGray6Color"/>
             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="jdC-mu-0f9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="By5-EI-o9i"/>
                 <constraint firstItem="4R3-X0-ts8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RlE-1n-71u"/>
                 <constraint firstItem="4R3-X0-ts8" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="SvP-zG-2Yc"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qD0-qa-Oz1" secondAttribute="trailing" id="cHq-ky-E7J"/>
                 <constraint firstItem="qD0-qa-Oz1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="4" id="mnj-i9-kEL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jdC-mu-0f9" secondAttribute="trailing" id="nX8-TR-rzw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="jdC-mu-0f9" secondAttribute="bottom" id="oHM-eV-ulo"/>
                 <constraint firstItem="qD0-qa-Oz1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pld-WA-KCG"/>
+                <constraint firstItem="jdC-mu-0f9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="xB3-yp-BsA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qD0-qa-Oz1" secondAttribute="bottom" id="xKD-rk-LBF"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

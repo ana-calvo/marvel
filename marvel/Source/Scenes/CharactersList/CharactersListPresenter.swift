@@ -10,14 +10,14 @@ import UIKit
 
 protocol CharactersListPresenterView {
     func performCharacters(characters: [CharacterViewData])
-    func performError(message: String)
+    func performError(error: ErrorViewData)
 }
 
 class CharactersListPresenter: BasePresenter {
     
     // Properties
     var characters: [Character] = []
-    let errorMessage = "Something went wrong 😕"
+    let error: ErrorViewData = ErrorViewData(title: "Error", description: "Something went wrong 😕 \n Please, come back later.", actionTitle: "OK")
     
     var view: CharactersListPresenterView?
     
@@ -64,7 +64,7 @@ extension CharactersListPresenter {
                 view.performCharacters(characters: charactersViewData)
                 
             case .unknownError:
-                view.performError(message: self.errorMessage)
+                view.performError(error: self.error)
             }
         }
         
