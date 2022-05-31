@@ -28,6 +28,8 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.overrideUserInterfaceStyle = .light
+        
         presenter.viewDidLoad()
         
         if self.viewDidLoadHandler != nil { self.viewDidLoadHandler!(self) }
