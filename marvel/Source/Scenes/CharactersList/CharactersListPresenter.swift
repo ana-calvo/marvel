@@ -44,12 +44,16 @@ extension CharactersListPresenter {
         }
     }
     
+    func reloadCharacters() {
+        self.getCharacters()
+    }
+    
 }
 
 // MARK: - Methods
 extension CharactersListPresenter {
     
-    private func getCharacters() {
+     private func getCharacters() {
         
         guard let view = self.view else { return }
         

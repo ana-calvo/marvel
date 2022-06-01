@@ -20,6 +20,9 @@ class CharactersListViewController: BaseViewController {
             tableView.dataSource = self
             tableView.register(CharacterCell.nibInstance, forCellReuseIdentifier: CharacterCell.cellIdentifier)
             tableView.tableFooterView = UIView(frame: CGRect.zero)
+            tableView.refreshControl = UIRefreshControl()
+            tableView.refreshControl?.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+            tableView.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         }
     }
     
@@ -143,6 +146,11 @@ extension CharactersListViewController {
         self.activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.activityIndicator.isHidden = true
+        self.tableView.refreshControl?.endRefreshing()
+    }
+    
+    @objc private func pullToRefresh() {
+        self.presenter.reloadCharacters()
     }
     
 }

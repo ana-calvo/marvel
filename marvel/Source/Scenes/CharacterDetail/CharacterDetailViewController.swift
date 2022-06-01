@@ -81,6 +81,9 @@ class CharacterDetailViewController: BaseViewController {
             tableView.dataSource = self
             tableView.register(ProductCell.nibInstance, forCellReuseIdentifier: ProductCell.cellIdentifier)
             tableView.tableFooterView = UIView(frame: CGRect.zero)
+            tableView.refreshControl = UIRefreshControl()
+            tableView.refreshControl?.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            tableView.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         }
     }
     
@@ -276,6 +279,24 @@ extension CharacterDetailViewController {
         self.activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.activityIndicator.isHidden = true
+        self.tableView.refreshControl?.endRefreshing()
+    }
+
+    @objc private func pullToRefresh() {
+        self.updateProductInformation(at: self.selectedIndex)
+    }
+
+    private func updateProductInformation(at index: Int) {
+        
+        if index == 0 {
+            self.presenter.loadComics()
+        } else if index == 1 {
+            self.presenter.loadEvents()
+        } else if index == 2 {
+            self.presenter.loadSeries()
+        } else if index == 3 {
+            self.presenter.loadStories()
+        }
     }
     
     private func checkContent(products: [ProductViewData]) {
@@ -288,19 +309,6 @@ extension CharacterDetailViewController {
             self.stopLoading()
         }
         
-    }
-    
-    private func updateProductInformation(at index: Int) {
-        
-        if index == 0 {
-            self.presenter.loadComics()
-        } else if index == 1 {
-            self.presenter.loadEvents()
-        } else if index == 2 {
-            self.presenter.loadSeries()
-        } else if index == 3 {
-            self.presenter.loadStories()
-        }
     }
     
 }
