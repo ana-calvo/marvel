@@ -28,5 +28,5 @@ extension UIImageView {
             self.loadFrom(URLAddress: urlString)
         }
     }
-
+    
 }

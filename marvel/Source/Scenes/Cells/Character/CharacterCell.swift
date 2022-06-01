@@ -41,6 +41,7 @@ class CharacterCell: UITableViewCell {
     
     // Highlight effect for selected cell
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        
         super.setHighlighted(highlighted, animated: animated)
         self.selectionStyle = .none
         

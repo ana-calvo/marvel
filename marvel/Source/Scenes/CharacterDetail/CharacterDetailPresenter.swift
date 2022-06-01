@@ -25,7 +25,7 @@ class CharacterDetailPresenter: BasePresenter {
     
     var view: CharacterDetailPresenterView?
     
-    // Initializations
+    // Initialization
     init(view: CharacterDetailPresenterView) {
         self.view = view
     }
@@ -74,7 +74,7 @@ extension CharacterDetailPresenter {
             let data = CharacterViewData(id: adapter.character.id!,
                                          name: adapter.character.name!,
                                          description: adapter.character.description,
-                                         picture: self.getThumbnailUrl(thumbnail: adapter.character.thumbnail, size: "standard_large")
+                                         picture: adapter.character.thumbnail?.createStringUrl(size: "standard_large") ?? ""
             )
             
             view.performDetails(character: data)
@@ -170,7 +170,7 @@ extension CharacterDetailPresenter {
                 let productViewData = ProductViewData(
                     id: id,
                     title: title,
-                    cover: self.getThumbnailUrl(thumbnail: product.thumbnail, size: "portrait_small")
+                    cover: product.thumbnail?.createStringUrl(size: "portrait_small") ?? ""
                 )
                 
                 productsViewData.append(productViewData)

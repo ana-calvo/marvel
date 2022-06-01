@@ -12,7 +12,7 @@ class CharactersListViewController: BaseViewController {
     // Properties
     var characters: [CharacterViewData]?
     
-    //Outlets
+    // Outlets
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.isHidden = true

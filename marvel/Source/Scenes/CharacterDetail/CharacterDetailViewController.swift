@@ -281,11 +281,11 @@ extension CharacterDetailViewController {
         self.activityIndicator.isHidden = true
         self.tableView.refreshControl?.endRefreshing()
     }
-
+    
     @objc private func pullToRefresh() {
         self.updateProductInformation(at: self.selectedIndex)
     }
-
+    
     private func updateProductInformation(at index: Int) {
         
         if index == 0 {

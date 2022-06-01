@@ -21,7 +21,7 @@ class CharactersListPresenter: BasePresenter {
     
     var view: CharactersListPresenterView?
     
-    // Initializations
+    // Initialization
     init(view: CharactersListPresenterView) {
         self.view = view
     }
@@ -53,7 +53,7 @@ extension CharactersListPresenter {
 // MARK: - Methods
 extension CharactersListPresenter {
     
-     private func getCharacters() {
+    private func getCharacters() {
         
         guard let view = self.view else { return }
         
@@ -87,7 +87,7 @@ extension CharactersListPresenter {
                     id: id,
                     name: name,
                     description: character.description,
-                    picture: self.getThumbnailUrl(thumbnail: character.thumbnail, size: "standard_medium")
+                    picture: character.thumbnail?.createStringUrl(size: "standard_medium") ?? ""
                 )
                 
                 charactersViewData.append(characterViewData)
