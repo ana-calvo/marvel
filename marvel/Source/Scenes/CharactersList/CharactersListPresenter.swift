@@ -85,9 +85,9 @@ extension CharactersListPresenter {
                 
                 let characterViewData = CharacterViewData(
                     id: id,
-                    name: name,
+                    name: name.capitalized,
                     description: character.description,
-                    picture: character.thumbnail?.createStringUrl(size: "standard_medium") ?? ""
+                    pictureURL: character.thumbnail?.createStringUrl(withImageSize: "standard_medium") ?? ""
                 )
                 
                 charactersViewData.append(characterViewData)

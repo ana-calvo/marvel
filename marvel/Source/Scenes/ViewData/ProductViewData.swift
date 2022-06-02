@@ -11,11 +11,11 @@ struct ProductViewData {
     
     let id: Int
     let title: String
-    let cover: String
+    let coverURL: String
     
-    init(id: Int, title: String, cover: String) {
+    init(id: Int, title: String, coverURL: String) {
         self.id = id
         self.title = title
-        self.cover = cover
+        self.coverURL = coverURL
     }
 }

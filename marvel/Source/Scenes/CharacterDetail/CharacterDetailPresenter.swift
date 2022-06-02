@@ -72,9 +72,9 @@ extension CharacterDetailPresenter {
             self.character = adapter.character
             
             let data = CharacterViewData(id: adapter.character.id!,
-                                         name: adapter.character.name!,
+                                         name: adapter.character.name!.capitalized,
                                          description: adapter.character.description,
-                                         picture: adapter.character.thumbnail?.createStringUrl(size: "standard_large") ?? ""
+                                         pictureURL: adapter.character.thumbnail?.createStringUrl(withImageSize: "standard_large") ?? ""
             )
             
             view.performDetails(character: data)
@@ -169,8 +169,8 @@ extension CharacterDetailPresenter {
                 
                 let productViewData = ProductViewData(
                     id: id,
-                    title: title,
-                    cover: product.thumbnail?.createStringUrl(size: "portrait_small") ?? ""
+                    title: title.capitalized,
+                    coverURL: product.thumbnail?.createStringUrl(withImageSize: "portrait_small") ?? ""
                 )
                 
                 productsViewData.append(productViewData)

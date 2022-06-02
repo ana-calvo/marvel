@@ -13,13 +13,13 @@ struct CharacterViewData {
     var id: Int
     var name: String
     var description: String?
-    var picture: String
+    var pictureURL: String
     
-    init(id: Int, name: String, description: String? = nil, picture: String) {
+    init(id: Int, name: String, description: String? = nil, pictureURL: String) {
         self.id = id
         self.name = name
         self.description = description
-        self.picture = picture
+        self.pictureURL = pictureURL
     }
 
 }

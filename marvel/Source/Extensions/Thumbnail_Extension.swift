@@ -9,26 +9,26 @@ import Foundation
 
 extension Thumbnail {
     
-    func createStringUrl(size: String) -> String {
-        
+    func createStringUrl(withImageSize: String) -> String {
+
         var thumbnailPath = ""
         var thumbnailUrl = ""
-        
+
         if let path = self.path, let ext = self.extension {
-            
+
             // It conforms AppTransportSecurity (ATS) policy
             if !path.contains("https") {
                 var comps = URLComponents(string: path)!
                 comps.scheme = "https"
                 thumbnailPath = comps.string!
-                
+
             } else {
                 thumbnailPath = path
             }
-            
-            thumbnailUrl = "\(thumbnailPath)/\(size).\(ext)"
+
+            thumbnailUrl = "\(thumbnailPath)/\(withImageSize).\(ext)"
         }
-        
+
         return thumbnailUrl
     }
     

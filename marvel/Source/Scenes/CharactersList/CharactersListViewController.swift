@@ -8,7 +8,7 @@
 import UIKit
 
 class CharactersListViewController: BaseViewController {
-    
+
     // Properties
     var characters: [CharacterViewData]?
     
@@ -50,7 +50,7 @@ class CharactersListViewController: BaseViewController {
         self.startLoading()
         self.title = "Marvel characters"
     }
-    
+
 }
 
 // MARK: - Presenter Methods
@@ -109,7 +109,7 @@ extension CharactersListViewController: UITableViewDelegate, UITableViewDataSour
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterCell.cellIdentifier, for: indexPath) as? CharacterCell else { return UITableViewCell() }
         
-        cell.avatarImageView.setImage(urlString: charactersList[indexPath.row].picture)
+        cell.avatarImageView.setImage(urlString: charactersList[indexPath.row].pictureURL)
         cell.titleLabel.text = charactersList[indexPath.row].name
         
         return cell

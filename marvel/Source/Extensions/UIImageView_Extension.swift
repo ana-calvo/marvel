@@ -7,25 +7,18 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 extension UIImageView {
     
-    func loadFrom(URLAddress: String) {
-        guard let url = URL(string: URLAddress) else { return }
-        
-        if let imageData = try? Data(contentsOf: url) {
-            if let loadedImage = UIImage(data: imageData) {
-                self.image = loadedImage
-            }
-        }
-    }
-    
     // If there is no image available, a default one is set up
     func setImage(urlString: String) {
+        
         if urlString.contains("image_not_available") || urlString.isEmpty {
             self.image = UIImage(named: "marvel_logo")
+        
         } else {
-            self.loadFrom(URLAddress: urlString)
+            self.kf.setImage(with: URL(string: urlString), options: [.transition(.fade(0.25))])
         }
     }
     

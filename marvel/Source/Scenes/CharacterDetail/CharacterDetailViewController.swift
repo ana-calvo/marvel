@@ -113,7 +113,7 @@ extension CharacterDetailViewController: CharacterDetailPresenterView {
     func performDetails(character: CharacterViewData) {
         self.title = character.name
         
-        self.profileImageView.setImage(urlString: character.picture)
+        self.profileImageView.setImage(urlString: character.pictureURL)
         
         self.nameLabel.text = character.name
         
@@ -218,26 +218,26 @@ extension CharacterDetailViewController: UITableViewDelegate, UITableViewDataSou
         case 0:
             guard let comicsList = self.comics else { return UITableViewCell() }
             
-            cell.coverImageView.setImage(urlString: comicsList[indexPath.row].cover)
-            cell.titleLabel.text = comicsList[indexPath.row].title.capitalized
+            cell.coverImageView.setImage(urlString: comicsList[indexPath.row].coverURL)
+            cell.titleLabel.text = comicsList[indexPath.row].title
             
         case 1:
             guard let eventsList = self.events else { return UITableViewCell() }
             
-            cell.coverImageView.setImage(urlString: eventsList[indexPath.row].cover)
-            cell.titleLabel.text = eventsList[indexPath.row].title.capitalized
+            cell.coverImageView.setImage(urlString: eventsList[indexPath.row].coverURL)
+            cell.titleLabel.text = eventsList[indexPath.row].title
             
         case 2:
             guard let seriesList = self.series else { return UITableViewCell() }
             
-            cell.coverImageView.setImage(urlString: seriesList[indexPath.row].cover)
-            cell.titleLabel.text = seriesList[indexPath.row].title.capitalized
+            cell.coverImageView.setImage(urlString: seriesList[indexPath.row].coverURL)
+            cell.titleLabel.text = seriesList[indexPath.row].title
             
         case 3:
             guard let storiesList = self.stories else { return UITableViewCell() }
             
-            cell.coverImageView.setImage(urlString: storiesList[indexPath.row].cover)
-            cell.titleLabel.text = storiesList[indexPath.row].title.capitalized
+            cell.coverImageView.setImage(urlString: storiesList[indexPath.row].coverURL)
+            cell.titleLabel.text = storiesList[indexPath.row].title
             
         default:
             return UITableViewCell()

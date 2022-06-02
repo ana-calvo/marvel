@@ -148,7 +148,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YDA-28-D2d" secondAttribute="trailing" id="ycU-xk-h20"/>
                 <constraint firstItem="Q24-r0-Crf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="z4d-ZD-Z7M"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
             <point key="canvasLocation" x="139" y="108"/>
         </view>
     </objects>
